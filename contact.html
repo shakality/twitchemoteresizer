@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support — EMOTE.PRO</title>
+    <meta name="description" content="Have questions or feedback? Get in touch with the Emote.Pro team.">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="/src/index.css">
+</head>
+<body class="overflow-x-hidden flex flex-col min-h-screen">
+    <nav class="fixed top-0 left-0 w-full h-20 z-50 flex items-center justify-between px-8 border-b border-white/5 glass-blur">
+        <div class="flex items-center gap-8">
+            <a href="index.html" class="text-sm font-mono tracking-[0.3em] uppercase">Emote.Pro</a>
+            <div class="hidden md:flex gap-6 text-[10px] uppercase tracking-widest text-white/40">
+                <a href="about.html" class="hover:text-white transition-colors">Mission</a>
+                <a href="contact.html" class="text-white">Support</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 pt-40 px-8 lg:px-24 pb-24">
+        <div class="max-w-4xl">
+            <span class="text-[10px] font-mono uppercase tracking-[0.5em] text-white/40 mb-12 block">Support Pipeline</span>
+            <h1 class="massive-text font-sans font-extralight uppercase mb-24">
+                Get in<br>
+                <span class="font-serif italic font-normal lowercase">Touch.</span>
+            </h1>
+
+            <form class="space-y-12" onsubmit="event.preventDefault(); alert('Transmission Received.');">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="border-b border-white/10 py-4">
+                        <label class="block text-[10px] font-mono text-white/20 uppercase tracking-widest mb-2">Identity</label>
+                        <input type="text" required class="w-full bg-transparent text-xl font-light outline-none" placeholder="NAME">
+                    </div>
+                    <div class="border-b border-white/10 py-4">
+                        <label class="block text-[10px] font-mono text-white/20 uppercase tracking-widest mb-2">Return_Path</label>
+                        <input type="email" required class="w-full bg-transparent text-xl font-light outline-none" placeholder="EMAIL">
+                    </div>
+                </div>
+                <div class="border-b border-white/10 py-4">
+                    <label class="block text-[10px] font-mono text-white/20 uppercase tracking-widest mb-2">Payload</label>
+                    <textarea required rows="4" class="w-full bg-transparent text-xl font-light outline-none resize-none" placeholder="MESSAGE"></textarea>
+                </div>
+                <button type="submit" class="group flex items-center gap-4 text-sm font-mono uppercase tracking-[0.4em]">
+                    Execute Transmission
+                    <div class="w-8 h-[1px] bg-white group-hover:w-16 transition-all"></div>
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="p-8 lg:p-24 border-t border-white/5 bg-black">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 text-[10px] font-mono uppercase tracking-widest text-white/40">
+            <span>&copy; 2026 EMOTE.PRO</span>
+            <div class="flex gap-8">
+                <a href="index.html" class="hover:text-white transition-colors">Home</a>
+                <a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy</a>
+                <a href="terms.html" class="hover:text-white transition-colors">Terms</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
