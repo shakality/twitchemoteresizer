@@ -56,117 +56,100 @@
     }
     </script>
 </head>
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden bg-gray-50">
 
-    <!-- Navigation Rail -->
-    <nav class="fixed top-0 left-0 w-full h-20 z-50 flex items-center justify-between px-8 border-b border-white/5 glass-blur">
-        <div class="flex items-center gap-8">
-            <a href="index.html" class="text-sm font-mono tracking-[0.3em] uppercase">Twitch Emote Resizer</a>
-            <div class="hidden md:flex gap-6 text-[10px] uppercase tracking-widest text-white/40">
-                <a href="about.html" class="hover:text-white transition-colors">Mission</a>
-                <a href="contact.html" class="hover:text-white transition-colors">Support</a>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full h-16 z-50 flex items-center justify-between px-6 border-b border-gray-200 glass-blur">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-twitch rounded-md flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57V4.714zm4.715 0H18v5.143h-1.714V4.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0H6zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714v9.429z"/></svg>
             </div>
+            <span class="text-sm font-bold tracking-tight">Twitch Emote Resizer</span>
         </div>
-        <div class="flex items-center gap-4">
-            <span class="text-[10px] font-mono text-white/20 uppercase tracking-widest">Status: Operational</span>
-            <div class="w-2 h-2 rounded-full bg-white animate-pulse"></div>
+        <div class="flex items-center gap-6 text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <a href="about.html" class="hover:text-twitch transition-colors">Mission</a>
+            <a href="contact.html" class="hover:text-twitch transition-colors">Support</a>
         </div>
     </nav>
 
-    <main class="min-h-screen grid lg:grid-cols-2 pt-20">
+    <main class="min-h-screen flex flex-col items-center justify-center px-6 pt-16">
         
-        <!-- Left Pane: Editorial -->
-        <div class="relative p-8 lg:p-16 flex flex-col justify-between border-r border-white/5">
-            <div class="animate-slide-up">
-                <span class="text-[10px] font-mono uppercase tracking-[0.5em] text-white/40 mb-12 block">Professional Streamer Utility</span>
-                <h1 class="massive-text font-sans font-extralight uppercase">
-                    Twitch<br>
-                    <span class="font-serif italic font-normal lowercase">Emote</span><br>
-                    Resizer.
-                </h1>
+        <!-- Tool Container -->
+        <div class="w-full max-w-2xl bg-white rounded-2xl border border-gray-200 drop-zone-shadow p-12 md:p-20 animate-slide-up" style="animation-delay: 0.1s">
+            
+            <!-- Upload Zone -->
+            <div id="dropZone" class="group relative border-2 border-dashed border-gray-200 rounded-xl p-12 text-center transition-all cursor-pointer hover:border-twitch hover:bg-twitch/[0.02]">
+                <input type="file" id="imageInput" class="hidden" accept="image/*">
+                <label for="imageInput" class="cursor-pointer">
+                    <div class="mb-6 flex justify-center">
+                        <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-gray-400 group-hover:text-twitch transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                    </div>
+                    <p class="text-xl font-semibold text-gray-900 mb-2">Drop your image here</p>
+                    <p class="text-sm text-gray-400 mb-8 uppercase tracking-widest">or</p>
+                    <div class="inline-flex items-center px-8 py-3 bg-twitch text-white font-bold rounded-lg hover:bg-twitch-hover transition-all shadow-lg shadow-twitch/20">
+                        Browse files
+                    </div>
+                </label>
             </div>
 
-            <div class="mt-24 lg:mt-0 animate-slide-up" style="animation-delay: 0.2s">
-                <p class="text-xl font-light text-white/60 max-w-md leading-relaxed">
-                    Instantly convert your artwork into the exact 28px, 56px, and 112px sizes required for Twitch. Professional-grade scaling with zero quality loss.
-                </p>
-                <div class="mt-12 flex gap-12 items-center">
-                    <div class="flex flex-col">
-                        <span class="text-[10px] font-mono text-white/30 uppercase mb-2">Processing</span>
-                        <span class="text-2xl font-light">Instant</span>
+            <!-- Results Section -->
+            <div id="resultsSection" class="hidden mt-12 space-y-8 animate-slide-up">
+                <div class="grid grid-cols-3 gap-6">
+                    <!-- 112 -->
+                    <div class="flex flex-col items-center gap-4">
+                        <div class="w-full aspect-square border border-gray-100 rounded-lg flex items-center justify-center bg-gray-50 overflow-hidden">
+                            <canvas id="canvas112" width="112" height="112" class="max-w-full"></canvas>
+                        </div>
+                        <button id="download112" class="text-xs font-bold uppercase tracking-widest text-twitch hover:text-twitch-hover transition-colors">Download 112px</button>
                     </div>
-                    <div class="flex flex-col">
-                        <span class="text-[10px] font-mono text-white/30 uppercase mb-2">Privacy</span>
-                        <span class="text-2xl font-light">100% Local</span>
+                    <!-- 56 -->
+                    <div class="flex flex-col items-center gap-4">
+                        <div class="w-full aspect-square border border-gray-100 rounded-lg flex items-center justify-center bg-gray-50 overflow-hidden">
+                            <canvas id="canvas56" width="56" height="56"></canvas>
+                        </div>
+                        <button id="download56" class="text-xs font-bold uppercase tracking-widest text-twitch hover:text-twitch-hover transition-colors">Download 56px</button>
+                    </div>
+                    <!-- 28 -->
+                    <div class="flex flex-col items-center gap-4">
+                        <div class="w-full aspect-square border border-gray-100 rounded-lg flex items-center justify-center bg-gray-50 overflow-hidden">
+                            <canvas id="canvas28" width="28" height="28"></canvas>
+                        </div>
+                        <button id="download28" class="text-xs font-bold uppercase tracking-widest text-twitch hover:text-twitch-hover transition-colors">Download 28px</button>
                     </div>
                 </div>
-            </div>
-
-            <!-- Vertical Rail Text -->
-            <div class="absolute right-4 top-1/2 -translate-y-1/2 vertical-rail hidden lg:block">
-                <span class="text-[10px] font-mono text-white/10 uppercase tracking-[1em]">Twitch_Emote_Standard_v2.0</span>
             </div>
         </div>
 
-        <!-- Right Pane: Tool -->
-        <div class="p-8 lg:p-16 flex flex-col justify-center bg-white/[0.01]">
-            
-            <section class="max-w-xl mx-auto w-full">
-                <!-- Upload Zone -->
-                <div id="dropZone" class="group relative border border-white/10 rounded-sm p-20 text-center transition-all cursor-pointer hover:bg-white/[0.02] hover:border-white/30">
-                    <input type="file" id="imageInput" class="hidden" accept="image/*">
-                    <label for="imageInput" class="cursor-pointer">
-                        <div class="mb-8 flex justify-center">
-                            <div class="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <svg class="w-5 h-5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4v16m8-8H4"></path></svg>
-                            </div>
-                        </div>
-                        <p class="text-sm font-mono uppercase tracking-[0.3em] text-white/60">Upload Emote Image</p>
-                    </label>
-                </div>
-
-                <!-- Results Section -->
-                <div id="resultsSection" class="hidden mt-16 space-y-12 animate-slide-up">
-                    <div class="grid grid-cols-3 gap-4">
-                        <!-- 112 -->
-                        <div class="flex flex-col items-center gap-6">
-                            <div class="w-full aspect-square border border-white/5 flex items-center justify-center bg-black/40">
-                                <canvas id="canvas112" width="112" height="112" class="max-w-full"></canvas>
-                            </div>
-                            <button id="download112" class="text-[10px] font-mono uppercase tracking-widest text-white/40 hover:text-white transition-colors">Extract_112</button>
-                        </div>
-                        <!-- 56 -->
-                        <div class="flex flex-col items-center gap-6">
-                            <div class="w-full aspect-square border border-white/5 flex items-center justify-center bg-black/40">
-                                <canvas id="canvas56" width="56" height="56"></canvas>
-                            </div>
-                            <button id="download56" class="text-[10px] font-mono uppercase tracking-widest text-white/40 hover:text-white transition-colors">Extract_56</button>
-                        </div>
-                        <!-- 28 -->
-                        <div class="flex flex-col items-center gap-6">
-                            <div class="w-full aspect-square border border-white/5 flex items-center justify-center bg-black/40">
-                                <canvas id="canvas28" width="28" height="28"></canvas>
-                            </div>
-                            <button id="download28" class="text-[10px] font-mono uppercase tracking-widest text-white/40 hover:text-white transition-colors">Extract_28</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+        <!-- Trust Badges -->
+        <div class="mt-16 flex flex-wrap justify-center gap-12 text-gray-400 animate-slide-up" style="animation-delay: 0.2s">
+            <div class="flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                <span class="text-xs font-mono uppercase tracking-widest">Secure & Private</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <span class="text-xs font-mono uppercase tracking-widest">Instant Scaling</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                <span class="text-xs font-mono uppercase tracking-widest">PNG Export</span>
+            </div>
         </div>
     </main>
 
     <!-- Content Section -->
-    <section class="p-8 lg:p-24 border-t border-white/5">
+    <section class="p-8 lg:p-24 bg-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto">
             <div class="grid lg:grid-cols-3 gap-24">
                 <div class="lg:col-span-2">
-                    <h2 class="text-5xl font-serif italic mb-12">The Science of Scaling</h2>
-                    <div class="prose prose-invert prose-slate max-w-none font-light text-white/40 leading-relaxed">
+                    <h2 class="text-4xl font-bold tracking-tight text-gray-900 mb-8">Professional Grade Scaling</h2>
+                    <div class="prose prose-slate max-w-none font-light text-gray-500 leading-relaxed">
                         <p>In the digital landscape of 2026, asset integrity is non-negotiable. When you upload an emote to Twitch, the platform's internal scaling can often introduce artifacts that diminish the impact of your brand. EMOTE.PRO provides a surgical alternative.</p>
                         <p class="mt-6">We utilize high-order interpolation methods that respect the original intent of your artwork. Whether it's a complex illustration or minimal pixel art, our pipeline ensures that the 28px output is as legible as the 112px master.</p>
                         
-                        <h3 class="text-3xl font-serif italic mt-16 mb-8 text-white">Twitch Emote Size Requirements</h3>
+                        <h3 class="text-2xl font-bold mt-16 mb-6 text-gray-900">Twitch Emote Size Requirements</h3>
                         <p>To ensure your emotes look great on all devices, Twitch requires three specific sizes for every upload:</p>
                         <ul class="list-disc pl-6 space-y-2 mt-4">
                             <li><strong>112x112 px:</strong> The high-resolution master used for larger displays and retina screens.</li>
@@ -175,38 +158,38 @@
                         </ul>
                         <p class="mt-6">All emotes must be in <strong>PNG format</strong> with a <strong>transparent background</strong> and a file size under 1MB.</p>
 
-                        <h3 class="text-3xl font-serif italic mt-16 mb-8 text-white">How to Resize Emotes for Twitch</h3>
+                        <h3 class="text-2xl font-bold mt-16 mb-6 text-gray-900">How to Resize Emotes for Twitch</h3>
                         <ol class="list-decimal pl-6 space-y-4 mt-4">
                             <li><strong>Select your artwork:</strong> Choose a high-quality PNG or JPEG image. Square images work best.</li>
                             <li><strong>Drag and Drop:</strong> Simply drop your file into our secure resizer above.</li>
                             <li><strong>Instant Generation:</strong> Our tool instantly creates all three required Twitch sizes.</li>
-                            <li><strong>Download:</strong> Click 'Extract' for each size to save them to your device, ready for upload to your Twitch dashboard.</li>
+                            <li><strong>Download:</strong> Click 'Download' for each size to save them to your device, ready for upload to your Twitch dashboard.</li>
                         </ol>
                     </div>
                 </div>
                 <div class="space-y-12">
-                    <div>
-                        <h4 class="text-[10px] font-mono uppercase tracking-[0.4em] text-white/20 mb-4">Protocol_01</h4>
-                        <h5 class="text-xl font-light mb-2">Zero Data Retention</h5>
-                        <p class="text-sm text-white/40 font-light">Your assets are processed entirely within the V8 sandbox of your browser. No data ever reaches our servers.</p>
+                    <div class="p-8 bg-gray-50 rounded-2xl">
+                        <h4 class="text-[10px] font-bold uppercase tracking-[0.4em] text-twitch mb-4">Protocol_01</h4>
+                        <h5 class="text-xl font-bold mb-2">Zero Data Retention</h5>
+                        <p class="text-sm text-gray-500 font-light leading-relaxed">Your assets are processed entirely within the V8 sandbox of your browser. No data ever reaches our servers.</p>
                     </div>
-                    <div>
-                        <h4 class="text-[10px] font-mono uppercase tracking-[0.4em] text-white/20 mb-4">Protocol_02</h4>
-                        <h5 class="text-xl font-light mb-2">Retina Ready</h5>
-                        <p class="text-sm text-white/40 font-light">Optimized for high-DPI displays, ensuring your community sees your emotes in full clarity across all devices.</p>
+                    <div class="p-8 bg-gray-50 rounded-2xl">
+                        <h4 class="text-[10px] font-bold uppercase tracking-[0.4em] text-twitch mb-4">Protocol_02</h4>
+                        <h5 class="text-xl font-bold mb-2">Retina Ready</h5>
+                        <p class="text-sm text-gray-500 font-light leading-relaxed">Optimized for high-DPI displays, ensuring your community sees your emotes in full clarity across all devices.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="p-8 lg:p-24 border-t border-white/5 bg-black">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-            <span class="text-[10px] font-mono uppercase tracking-[0.5em] text-white/20">&copy; 2026 EMOTE.PRO / SYSTEM_A</span>
-            <div class="flex gap-8 text-[10px] font-mono uppercase tracking-widest text-white/40">
-                <a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy</a>
-                <a href="terms.html" class="hover:text-white transition-colors">Terms</a>
-                <a href="contact.html" class="hover:text-white transition-colors">Support</a>
+    <footer class="p-8 lg:p-16 border-t border-gray-100 bg-gray-50">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <span class="text-[10px] font-bold uppercase tracking-[0.5em] text-gray-400">&copy; 2026 EMOTE.PRO / SYSTEM_A</span>
+            <div class="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                <a href="privacy-policy.html" class="hover:text-twitch transition-colors">Privacy</a>
+                <a href="terms.html" class="hover:text-twitch transition-colors">Terms</a>
+                <a href="contact.html" class="hover:text-twitch transition-colors">Support</a>
             </div>
         </div>
     </footer>

@@ -11,53 +11,57 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="/src/index.css">
 </head>
-<body class="overflow-x-hidden flex flex-col min-h-screen">
-    <nav class="fixed top-0 left-0 w-full h-20 z-50 flex items-center justify-between px-8 border-b border-white/5 glass-blur">
-        <div class="flex items-center gap-8">
-            <a href="index.html" class="text-sm font-mono tracking-[0.3em] uppercase">Twitch Emote Resizer</a>
-            <div class="hidden md:flex gap-6 text-[10px] uppercase tracking-widest text-white/40">
-                <a href="about.html" class="text-white">Mission</a>
-                <a href="contact.html" class="hover:text-white transition-colors">Support</a>
+<body class="overflow-x-hidden flex flex-col min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full h-16 z-50 flex items-center justify-between px-6 border-b border-gray-200 glass-blur">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-twitch rounded-md flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57V4.714zm4.715 0H18v5.143h-1.714V4.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0H6zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714v9.429z"/></svg>
             </div>
+            <a href="index.html" class="text-sm font-bold tracking-tight">Twitch Emote Resizer</a>
+        </div>
+        <div class="flex items-center gap-6 text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <a href="about.html" class="text-twitch">Mission</a>
+            <a href="contact.html" class="hover:text-twitch transition-colors">Support</a>
         </div>
     </nav>
 
     <main class="flex-1 pt-40 px-8 lg:px-24 pb-24">
         <div class="max-w-4xl">
-            <span class="text-[10px] font-mono uppercase tracking-[0.5em] text-white/40 mb-12 block">Operational Philosophy</span>
-            <h1 class="massive-text font-sans font-extralight uppercase mb-24">
+            <span class="text-[10px] font-bold uppercase tracking-[0.5em] text-twitch mb-12 block">Operational Philosophy</span>
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 mb-24">
                 Twitch<br>
-                <span class="font-serif italic font-normal lowercase">Resizing.</span>
+                <span class="font-serif italic font-normal lowercase text-twitch">Resizing.</span>
             </h1>
 
             <div class="grid md:grid-cols-2 gap-24">
-                <div class="prose prose-invert prose-slate max-w-none font-light text-white/60 leading-relaxed">
-                    <p class="text-2xl text-white font-light mb-12">EMOTE.PRO is a dedicated utility for resizing Twitch emotes and badges.</p>
+                <div class="prose prose-slate max-w-none font-light text-gray-500 leading-relaxed">
+                    <p class="text-2xl text-gray-900 font-light mb-12">EMOTE.PRO is a dedicated utility for resizing Twitch emotes and badges.</p>
                     <p>We provide a simple, high-performance way to generate the 28x28, 56x56, and 112x112 PNG files required for Twitch. Our tool runs entirely in your browser, meaning your images are never uploaded to a server, ensuring total privacy and maximum speed.</p>
                 </div>
                 <div class="space-y-12">
-                    <div>
-                        <h4 class="text-[10px] font-mono uppercase tracking-[0.4em] text-white/20 mb-4">Protocol_01</h4>
-                        <h5 class="text-xl font-light mb-2">Privacy-Centric</h5>
-                        <p class="text-sm text-white/40 font-light">Architecture with zero data retention. Your creative process remains private.</p>
+                    <div class="p-8 bg-white rounded-2xl border border-gray-200 drop-zone-shadow">
+                        <h4 class="text-[10px] font-bold uppercase tracking-[0.4em] text-twitch mb-4">Protocol_01</h4>
+                        <h5 class="text-xl font-bold mb-2">Privacy-Centric</h5>
+                        <p class="text-sm text-gray-500 font-light leading-relaxed">Architecture with zero data retention. Your creative process remains private.</p>
                     </div>
-                    <div>
-                        <h4 class="text-[10px] font-mono uppercase tracking-[0.4em] text-white/20 mb-4">Protocol_02</h4>
-                        <h5 class="text-xl font-light mb-2">High Fidelity</h5>
-                        <p class="text-sm text-white/40 font-light">Scaling algorithms optimized for pixel-perfect output across all Twitch-required buffers.</p>
+                    <div class="p-8 bg-white rounded-2xl border border-gray-200 drop-zone-shadow">
+                        <h4 class="text-[10px] font-bold uppercase tracking-[0.4em] text-twitch mb-4">Protocol_02</h4>
+                        <h5 class="text-xl font-bold mb-2">High Fidelity</h5>
+                        <p class="text-sm text-gray-500 font-light leading-relaxed">Scaling algorithms optimized for pixel-perfect output across all Twitch-required buffers.</p>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="p-8 lg:p-24 border-t border-white/5 bg-black">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 text-[10px] font-mono uppercase tracking-widest text-white/40">
+    <footer class="p-8 lg:p-16 border-t border-gray-100 bg-gray-50">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-400">
             <span>&copy; 2026 EMOTE.PRO</span>
             <div class="flex gap-8">
-                <a href="index.html" class="hover:text-white transition-colors">Home</a>
-                <a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy</a>
-                <a href="terms.html" class="hover:text-white transition-colors">Terms</a>
+                <a href="index.html" class="hover:text-twitch transition-colors">Home</a>
+                <a href="privacy-policy.html" class="hover:text-twitch transition-colors">Privacy</a>
+                <a href="terms.html" class="hover:text-twitch transition-colors">Terms</a>
             </div>
         </div>
     </footer>

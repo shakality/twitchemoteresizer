@@ -6,14 +6,16 @@
   --font-serif: "Playfair Display", serif;
   --font-mono: "JetBrains Mono", monospace;
   
-  --color-ink: #0A0A0A;
-  --color-paper: #F5F5F0;
-  --color-border: rgba(255, 255, 255, 0.1);
+  --color-twitch: #9146FF;
+  --color-twitch-hover: #772CE8;
+  --color-ink: #0F0F12;
+  --color-paper: #FFFFFF;
+  --color-border: #E5E7EB;
 }
 
 @layer base {
   body {
-    @apply bg-ink text-white font-sans antialiased selection:bg-white selection:text-black;
+    @apply bg-paper text-ink font-sans antialiased selection:bg-twitch selection:text-white;
   }
 }
 
@@ -27,14 +29,18 @@
 }
 
 .massive-text {
-  font-size: clamp(4rem, 12vw, 12rem);
-  line-height: 0.85;
-  letter-spacing: -0.04em;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .glass-blur {
-  backdrop-filter: blur(40px);
-  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.drop-zone-shadow {
+  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.05);
 }
 
 @keyframes slide-up {
