@@ -65,5 +65,43 @@
             </div>
         </div>
     </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 z-[100] transform translate-y-full transition-transform duration-500 shadow-2xl">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-600">
+                We use cookies to enhance your experience and analyze our traffic. By clicking "Accept", you consent to our use of cookies. 
+                <a href="privacy-policy.html" class="text-twitch underline">Learn more</a>.
+            </p>
+            <div class="flex gap-4">
+                <button id="accept-cookies" class="px-6 py-2 bg-twitch text-white text-xs font-bold uppercase tracking-widest rounded hover:bg-twitch-hover transition-colors">Accept</button>
+                <button id="decline-cookies" class="px-6 py-2 text-gray-400 text-xs font-bold uppercase tracking-widest hover:text-gray-600 transition-colors">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const banner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+            const declineBtn = document.getElementById('decline-cookies');
+
+            if (!localStorage.getItem('cookieConsent')) {
+                setTimeout(() => {
+                    banner.classList.remove('translate-y-full');
+                }, 1000);
+            }
+
+            acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('cookieConsent', 'accepted');
+                banner.classList.add('translate-y-full');
+            });
+
+            declineBtn.addEventListener('click', () => {
+                localStorage.setItem('cookieConsent', 'declined');
+                banner.classList.add('translate-y-full');
+            });
+        });
+    </script>
 </body>
 </html>

@@ -7,6 +7,11 @@
     <meta name="description" content="Stop struggling with blurry emotes. Resize your Twitch emotes to 28px, 56px, and 112px with surgical precision. Instant, private, and zero quality loss. Try the #1 streamer tool today!">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="google-site-verification" content="JeKzCcg9VaEPBc4Oy4in8-EvheZoj0AlyohoyUSCClI" />
+    
+    <!-- Google AdSense Placeholder -->
+    <!-- Replace 'pub-0000000000000000' with your actual Publisher ID -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0000000000000000" crossorigin="anonymous"></script> -->
+
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="/src/index.css">
     <script type="application/ld+json">
@@ -163,6 +168,28 @@
                             <li><strong>Instant Generation:</strong> Our tool instantly creates all three required Twitch sizes.</li>
                             <li><strong>Download:</strong> Click 'Download' for each size to save them to your device, ready for upload to your Twitch dashboard.</li>
                         </ol>
+
+                        <div class="mt-16 p-8 bg-twitch/5 rounded-2xl border border-twitch/10">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Pro Tips for Twitch Emotes</h3>
+                            <div class="grid md:grid-cols-2 gap-8 text-sm">
+                                <div>
+                                    <h4 class="font-bold text-twitch mb-2">Contrast is King</h4>
+                                    <p>Since emotes are often viewed in dark mode, use bright colors and thick outlines to make your art pop against any background.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-twitch mb-2">Keep it Simple</h4>
+                                    <p>At 28px, fine details disappear. Focus on bold expressions and clear silhouettes for maximum readability.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-twitch mb-2">Transparency Matters</h4>
+                                    <p>Always export your emotes with a transparent background. Our resizer preserves transparency perfectly across all sizes.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-twitch mb-2">Test Before Upload</h4>
+                                    <p>Use the 28px preview in our tool to see exactly how your emote will look in a busy chat window.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="space-y-12">
@@ -191,6 +218,44 @@
             </div>
         </div>
     </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 z-[100] transform translate-y-full transition-transform duration-500 shadow-2xl">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-600">
+                We use cookies to enhance your experience and analyze our traffic. By clicking "Accept", you consent to our use of cookies. 
+                <a href="privacy-policy.html" class="text-twitch underline">Learn more</a>.
+            </p>
+            <div class="flex gap-4">
+                <button id="accept-cookies" class="px-6 py-2 bg-twitch text-white text-xs font-bold uppercase tracking-widest rounded hover:bg-twitch-hover transition-colors">Accept</button>
+                <button id="decline-cookies" class="px-6 py-2 text-gray-400 text-xs font-bold uppercase tracking-widest hover:text-gray-600 transition-colors">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const banner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+            const declineBtn = document.getElementById('decline-cookies');
+
+            if (!localStorage.getItem('cookieConsent')) {
+                setTimeout(() => {
+                    banner.classList.remove('translate-y-full');
+                }, 1000);
+            }
+
+            acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('cookieConsent', 'accepted');
+                banner.classList.add('translate-y-full');
+            });
+
+            declineBtn.addEventListener('click', () => {
+                localStorage.setItem('cookieConsent', 'declined');
+                banner.classList.add('translate-y-full');
+            });
+        });
+    </script>
 
     <script src="/src/script.js"></script>
 </body>
